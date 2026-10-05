@@ -36,7 +36,7 @@ const visit = (node) => {
 visit(tree);
 assert.ok(installedCount > 0, "installed tree must contain brace-expansion");
 
-const piRequire = createRequire(import.meta.resolve("@earendil-works/pi-coding-agent"));
+const piRequire = createRequire(new URL("node_modules/@earendil-works/pi-coding-agent/package.json", root));
 const minimatchRequire = createRequire(piRequire.resolve("minimatch"));
 assert.equal(minimatchRequire("brace-expansion/package.json").version, expectedVersion, "Pi's minimatch must use patched brace-expansion");
 assert.deepEqual(minimatchRequire("brace-expansion").expand("src/{index,installer}.ts"), ["src/index.ts", "src/installer.ts"]);
